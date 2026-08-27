@@ -1,14 +1,10 @@
 {
   "name": "Habib Naveed Confectionery",
   "short_name": "HNC",
-  "description": "Habib Naveed Confectionery Multi User Order Booker",
-  "start_url": "./",
+  "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#ffffff",
-  "theme_color": "#1f6feb",
-  "prefer_related_applications": false,
   "icons": [
     {
       "src": "./icons/icon-192.png",

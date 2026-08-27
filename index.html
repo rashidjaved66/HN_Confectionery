@@ -256,7 +256,7 @@ select{background:#fff}
     <div class="actions">
       <button class="pdf" onclick="todaySummaryPDF()">📄 Today Summary PDF</button>
       <button class="pdf" onclick="todayAllPrint()">🖨️ Today All Print</button>
-      <button class="pdf" id="todayAllSavePdfBtn" type="button" onclick="todayAllSavePDF()">📄 Today All Order PDF</button>
+      <button class="pdf" id="todayAllSavePdfBtn" type="button" onclick="todayAllSavePDF()">📥 Save Today All PDF</button>
       <button class="pdf" onclick="allOrdersPDF()">📄 My Orders PDF</button>
     </div>
 
@@ -1514,57 +1514,6 @@ function printPDF(title,body){
 </div>
 
 
-
-
-<script id="HNC_PWA_INSTALL_FIX">
-(function(){
-  let deferredPrompt = null;
-  const box = document.getElementById('pwaInstallBox');
-  const btn = document.getElementById('installAppBtn');
-
-  function showInstall(){
-    if (box && !window.matchMedia('(display-mode: standalone)').matches) {
-      box.style.display = 'block';
-    }
-  }
-
-  window.addEventListener('beforeinstallprompt', function(e){
-    e.preventDefault();
-    deferredPrompt = e;
-    showInstall();
-  });
-
-  if (btn) {
-    btn.addEventListener('click', async function(){
-      if (deferredPrompt) {
-        deferredPrompt.prompt();
-        try { await deferredPrompt.userChoice; } catch(e) {}
-        deferredPrompt = null;
-        if (box) box.style.display = 'none';
-      } else {
-        alert('Android Chrome mein menu (⋮) kholen aur "Install app" ya "Add to Home screen" select karein.');
-      }
-    });
-  }
-
-  window.addEventListener('appinstalled', function(){
-    if (box) box.style.display = 'none';
-    deferredPrompt = null;
-  });
-
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function(){
-      navigator.serviceWorker.register('./sw.js', {scope:'./'})
-        .then(function(reg){
-          console.log('HNC PWA Service Worker OK:', reg.scope);
-        })
-        .catch(function(err){
-          console.error('HNC PWA Service Worker ERROR:', err);
-        });
-    });
-  }
-})();
-</script>
 
 </body></html>`);
   w.document.close();
