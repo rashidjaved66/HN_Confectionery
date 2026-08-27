@@ -177,6 +177,10 @@ select{background:#fff}
 
 </head>
 <body>
+<div id="dashboardStarLogo" style="text-align:center;padding:8px 0 4px">
+  <img src="./icons/icon-192.png" alt="⭐" style="width:58px;height:58px;object-fit:contain;display:inline-block">
+</div>
+
 <div id="loginScreen" class="loginWrap">
   <div class="loginCard">
     <div class="loginLogo">🍰</div>
@@ -256,7 +260,7 @@ select{background:#fff}
     <div class="actions">
       <button class="pdf" onclick="todaySummaryPDF()">📄 Today Summary PDF</button>
       <button class="pdf" onclick="todayAllPrint()">🖨️ Today All Print</button>
-      <button class="pdf" id="todayAllSavePdfBtn" type="button" onclick="todayAllSavePDF()">📥 Save Today All PDF</button>
+      <button class="pdf" id="todayAllSavePdfBtn" type="button" onclick="todayAllOrderPDFDownload()">📄 Today All Order PDF</button>
       <button class="pdf" onclick="allOrdersPDF()">📄 My Orders PDF</button>
     </div>
 
@@ -1515,6 +1519,17 @@ function printPDF(title,body){
 
 
 
+
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('./sw.js').catch(function (e) {
+      console.log('HNC service worker error', e);
+    });
+  });
+}
+</script>
+
 </body></html>`);
   w.document.close();
 }
@@ -1570,6 +1585,29 @@ function singleOrderPDF(id){
 
 
 
+
+
+function todayAllOrderPDFDownload(){
+  const today=getTodayOrders();
+  if(!today.length){
+    alert("Aaj koi order nahi hai.");
+    return;
+  }
+
+  // Use the existing receipt/print renderer so the approved 3.2 x 8.4 inch
+  // layout remains unchanged. Browser/PWA security does not allow silent
+  // writing to arbitrary folders on a phone, so the browser's Save/Download
+  // mechanism is used.
+  if(typeof todayAllSavePDF==="function"){
+    todayAllSavePDF();
+    return;
+  }
+  if(typeof todayAllPrint==="function"){
+    todayAllPrint();
+    return;
+  }
+  alert("PDF function available nahi hai.");
+}
 
 function todayAllSavePDF(){
   const today=getTodayOrders();
