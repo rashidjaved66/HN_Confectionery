@@ -2,7 +2,7 @@
   "name": "Habib Naveed Confectionery",
   "short_name": "HNC",
   "description": "Habib Naveed Confectionery Multi User Order Booker",
-  "start_url": "./index.html",
+  "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
