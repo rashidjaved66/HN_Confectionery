@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#1f6feb">
 <meta name="mobile-web-app-title" content="Habib Naveed CSP">
 <meta name="application-name" content="Habib Naveed CSP">
-<link rel="manifest" href="./manifest.json">
+<link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="icon-192.png">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -1514,57 +1514,6 @@ function printPDF(title,body){
 </div>
 
 
-
-
-<script id="hnc-pwa-install-final">
-(function(){
-  let deferredPrompt = null;
-
-  function button(){
-    return document.getElementById("installAppBtn");
-  }
-
-  window.addEventListener("beforeinstallprompt", function(e){
-    e.preventDefault();
-    deferredPrompt = e;
-    const b = button();
-    if (b) b.style.display = "block";
-  });
-
-  document.addEventListener("click", function(e){
-    if (!e.target || e.target.id !== "installAppBtn") return;
-
-    if (!deferredPrompt) {
-      alert("Browser ke ⋮ menu se Install App / Add to Home screen select karein.");
-      return;
-    }
-
-    deferredPrompt.prompt();
-    deferredPrompt.userChoice.then(function(){
-      deferredPrompt = null;
-      const b = button();
-      if (b) b.style.display = "none";
-    });
-  });
-
-  window.addEventListener("appinstalled", function(){
-    deferredPrompt = null;
-    const b = button();
-    if (b) b.style.display = "none";
-  });
-})();
-</script>
-
-
-<script id="hnc-sw-register-final">
-window.addEventListener("load", function(){
-  if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("./sw.js", {scope:"./"})
-      .then(function(reg){ console.log("HNC PWA ready:", reg.scope); })
-      .catch(function(err){ console.log("HNC PWA error:", err); });
-  }
-});
-</script>
 
 </body></html>`);
   w.document.close();
