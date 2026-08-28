@@ -1,7 +1,7 @@
 {
   "name": "Habib Naveed Confectionery",
   "short_name": "HNC",
-  "start_url": "./index.html",
+  "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
@@ -18,5 +18,7 @@
       "type": "image/png",
       "purpose": "any maskable"
     }
-  ]
+  ],
+  "background_color": "#ffffff",
+  "theme_color": "#1f6feb"
 }
